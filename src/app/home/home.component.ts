@@ -18,7 +18,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.evalService.evalGet().subscribe((res) => {
+      this.posts = res
+      console.log(this.posts)
+    });
   }
 
 }

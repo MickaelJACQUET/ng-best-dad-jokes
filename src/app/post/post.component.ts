@@ -19,6 +19,11 @@ export class PostComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.evalService.evalGet().subscribe((res) => {
+      this.posts = res
+      console.log(this.posts)
+    });
+    
     this.post = postsMock.find((post) => post.id === +this.route.snapshot.params['id']);
   }
 }
