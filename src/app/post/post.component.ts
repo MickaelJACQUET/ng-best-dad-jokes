@@ -13,6 +13,7 @@ import { Post } from '../models/post.interface';
 export class PostComponent implements OnInit {
   posts: Post[] = postsMock
   post?: Post;
+  poster?: Post;
   constructor(
     private route: ActivatedRoute,
     public evalService: EvalServiceService
@@ -22,8 +23,10 @@ export class PostComponent implements OnInit {
     this.evalService.evalGet().subscribe((res) => {
       this.posts = res
       console.log(this.posts)
+      this.post = this.posts.find((post) => post.slug === this.route.snapshot.params['slug']
+        );
     });
     
-    this.post = postsMock.find((post) => post.id === +this.route.snapshot.params['id']);
+
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { postsMock } from '../data/posts.mock';
 import { EvalServiceService } from '../eval-service.service';
 import { Post } from '../models/post.interface';
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   posts: Post[] = postsMock;
 
   constructor(
-    public evalService: EvalServiceService
+    public evalService: EvalServiceService,
+    private router: Router 
   ) { }
 
   ngOnInit(): void {
@@ -24,4 +26,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  goToApplication(slug:any){
+    this.router.navigate(['post/'+slug]);
+  }
 }
